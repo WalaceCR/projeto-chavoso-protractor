@@ -16,3 +16,17 @@ describe('Enter GURU99 Name with error', function() {
 expect(guru.getText()).toEqual('Hello change GURU99!');
   });
 });
+
+exports.config = {
+    seleniumAddress: 'http://localhost:4444/wd/hub',
+    capabilities: {
+        'browserName': 'firefox'
+    },
+    specs: ['spec.js'],
+   framework: 'jasmine2' ,
+    onPrepare: function() {
+        var jasmineReporters = require('/home/walace/Development/Testes_protractor/node_modules/jasmine-reporters');
+        jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter(null, true, true)
+        );
+   }
+ };
