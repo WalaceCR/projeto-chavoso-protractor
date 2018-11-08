@@ -8,13 +8,23 @@ exports.config = {
     onPrepare: function() {
         var reporters = require('/node_modules/jasmine-reporters');
         
-        jasmine.getEnv().addReporter(reporters.JUnitXmlReporter({
+        jasmine.getEnv().addReporter(new reporters.JUnitXmlReporter({
             consolidateAll: true,
             savePath: '/node_modules/jasmine-reporters/testresults',
             filePrefix: 'xmloutput'
         }))
    }
  };
+
+ describe('Enter space', function() {
+    it('should add a thousand space', function() {
+    browser.get('https://angularjs.org');
+    element(by.model('yourName')).sendKeys('                          ');
+    var guru= element(by.xpath('html/body/div[2]/div[1]/div[2]/div[2]/div/h1'));
+   expect(guru.getText()).toEqual('Hello !');
+    });
+   });
+
 
 describe('Enter GURU99 Name', function() {
  it('should add a Name as GURU99', function() {
